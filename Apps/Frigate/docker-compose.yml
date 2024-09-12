@@ -34,7 +34,7 @@ services:
         fi
         /init'
     privileged: true # this may not be necessary for all setups
-    image: ghcr.io/blakeblackshear/frigate:stable
+    image: ghcr.io/blakeblackshear/frigate:latest
     labels:
       icon: https://raw.githubusercontent.com/mr-manuel/CasaOS-HomeAutomation-AppStore/latest/Apps/Frigate/icon.png
     network_mode: bridge
@@ -60,13 +60,11 @@ services:
     shm_size: "128mb" # update for your cameras based on calculation
     devices:
       - /dev/bus/usb:/dev/bus/usb  # passes the USB Coral, needs to be modified for other versions
-      - /dev/apex_0:/dev/apex_0  # passes a PCIe Coral, follow driver instructions here https://coral.ai/docs/m2/get-started/#2a-on-linux
       - /dev/vcsm:/dev/vcsm        # OpenMAX (Raspberry Pi)
       - /dev/vchiq:/dev/vchiq      # OpenMAX (Raspberry Pi)
       - /dev/video10:/dev/video10  # V4L2 (Raspberry Pi)
       - /dev/video11:/dev/video11  # V4L2 (Raspberry Pi)
       - /dev/video12:/dev/video12  # V4L2 (Raspberry Pi)
-      #- /dev/dri/renderD128  # for intel hwaccel, needs to be updated for your hardware
     volumes:
       - type: bind
         source: /etc/localtime
